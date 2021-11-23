@@ -31,6 +31,7 @@ namespace RendezVousPolyclinique.Controllers
         [HttpGet]
         public  IActionResult Get()
         {
+            throw new InvalidTimeZoneException("Je en l'ai jamais eue");
             return new OkObjectResult(_repo.Get().Select(p=> PatientMapper.MapToModel(p)));
         }
 
