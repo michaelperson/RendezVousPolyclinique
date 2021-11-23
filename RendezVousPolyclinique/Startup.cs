@@ -51,6 +51,13 @@ namespace RendezVousPolyclinique
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RendezVousPolyclinique", Version = "v1" });
             });
+
+            services.AddAuthentication("Bearer")
+                    .AddIdentityServerAuthentication("Bearer", options =>
+                    {
+                        options.ApiName = "RendezvousPolyCliniqueApi"; //Nom de l'api configurée dans Identity
+                        options.Authority = "https://localhost:44336"; //Adresse identity server
+                    });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -66,6 +73,8 @@ namespace RendezVousPolyclinique
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

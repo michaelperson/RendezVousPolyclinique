@@ -1,4 +1,5 @@
 ﻿using MappersTool;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using PolyDB.DAL.Entities;
@@ -13,6 +14,7 @@ namespace RendezVousPolyclinique.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class PatientController : ControllerBase
     {
         private readonly IRepository<PatientEntity, int> _repo;
