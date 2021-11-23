@@ -11,6 +11,7 @@ namespace RendezVousPloyclinique.Models
         public int Id { get; set; }
         [Required]
         [JsonPropertyName("nom")]
+        [MinLength(2)]
         public string Nom { get; set; }
         [Required]
 

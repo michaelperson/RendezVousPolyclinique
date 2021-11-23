@@ -4,16 +4,19 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting; 
 using Microsoft.OpenApi.Models;
+using NLog;
 using PolyDB.DAL;
 using PolyDB.DAL.Entities;
 using PolyDB.DAL.Repositories;
 using PolyDB.DAL.Repositories.Interfaces;
 using RendezVousPolyclinique.Infra.Formatters;
+using RendezVousPolyclinique.Infra.Logging;
+using RendezVousPolyclinique.Infra.Logging.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -23,6 +26,7 @@ namespace RendezVousPolyclinique
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration($"{Directory.GetCurrentDirectory()}/Nlog.config");
             Configuration = configuration;
         }
 
@@ -31,6 +35,7 @@ namespace RendezVousPolyclinique
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<ILoggerManager, LoggerManager>();
             services.AddScoped<IDBConnect, DBConnect>(m=> new DBConnect(Configuration.GetConnectionString("DevPolyDbConnectionString")));
             services.AddScoped<IRepository<PatientEntity, int>, PatientRepository>();
 
@@ -58,6 +63,7 @@ namespace RendezVousPolyclinique
                         options.ApiName = "RendezvousPolyCliniqueApi"; //Nom de l'api configurée dans Identity
                         options.Authority = "https://localhost:44336"; //Adresse identity server
                     });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -74,9 +80,9 @@ namespace RendezVousPolyclinique
 
             app.UseRouting();
 
-            app.UseAuthentication();
+           // app.UseAuthentication();
 
-            app.UseAuthorization();
+           // app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

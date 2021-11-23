@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.JsonPatch" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\RendezVousPloyclinique.Models\RendezVousPloyclinique.Models.csproj" />
   </ItemGroup>
 
