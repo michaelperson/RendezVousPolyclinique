@@ -11,6 +11,7 @@ using PolyDB.DAL;
 using PolyDB.DAL.Entities;
 using PolyDB.DAL.Repositories;
 using PolyDB.DAL.Repositories.Interfaces;
+using RendezVousPolyclinique.Infra.Formatters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,7 +35,18 @@ namespace RendezVousPolyclinique
             services.AddScoped<IRepository<PatientEntity, int>, PatientRepository>();
 
 
-            services.AddControllers();
+            services.AddControllers(
+                options=> {
+                    // J'accepte qu'on me demande un type
+                    options.RespectBrowserAcceptHeader = true;
+                    //Je n'accepte que des types connus
+                    // renvoie un 206 si type non "supporté"
+                    //options.ReturnHttpNotAcceptable = true;
+                    // ajoute mon formater
+                    options.OutputFormatters.Add(new HL7Formatter());
+                }
+                
+                );
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RendezVousPolyclinique", Version = "v1" });

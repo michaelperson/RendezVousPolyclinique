@@ -28,6 +28,13 @@ namespace RendezVousPolyclinique.Controllers
         {
             return new OkObjectResult(_repo.Get().Select(p=> PatientMapper.MapToModel(p)));
         }
+
+
+        [HttpGet("ExportCsv")]
+        public IActionResult GetCsv()
+        {
+            return new OkObjectResult(_repo.Get().Select(p => PatientMapper.MapToModel(p)));
+        }
         [HttpPost]
         public IActionResult Post(PatientModel patient)
         {
