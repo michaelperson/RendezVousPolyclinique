@@ -10,11 +10,16 @@ namespace RendezVousPloyclinique.Models
         [JsonIgnore]
         public int Id { get; set; }
         [Required]
+        [JsonPropertyName("nom")]
         public string Nom { get; set; }
         [Required]
+
+        [JsonPropertyName("prenom")]
         public string Prenom { get; set; }
         [Required]
         [DataType(DataType.DateTime)]
+
+        [JsonPropertyName("dateNaissance")]
         public DateTime DateNaissance { get; set; }
     }
 }

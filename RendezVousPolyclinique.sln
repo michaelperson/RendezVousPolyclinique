@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappersTool", "MappersTool\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RendezVousPloyclinique.Models", "RendezVousPloyclinique.Models\RendezVousPloyclinique.Models.csproj", "{585FA9B1-6EFB-4D97-AD80-2D23A4B800E8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiClient", "ApiClient\ApiClient.csproj", "{0844FA92-D3B4-43B3-ADD9-918962C0885B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{585FA9B1-6EFB-4D97-AD80-2D23A4B800E8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{585FA9B1-6EFB-4D97-AD80-2D23A4B800E8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{585FA9B1-6EFB-4D97-AD80-2D23A4B800E8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0844FA92-D3B4-43B3-ADD9-918962C0885B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0844FA92-D3B4-43B3-ADD9-918962C0885B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0844FA92-D3B4-43B3-ADD9-918962C0885B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0844FA92-D3B4-43B3-ADD9-918962C0885B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
