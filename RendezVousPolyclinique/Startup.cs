@@ -1,28 +1,15 @@
+using ApiMiddleware;
+using ApiTools.Logging;
+using ApiTools.Logging.Interfaces;
 using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting; 
-using Microsoft.OpenApi.Models;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 using NLog;
-using PolyDB.DAL;
-using PolyDB.DAL.Entities;
-using PolyDB.DAL.Repositories;
-using PolyDB.DAL.Repositories.Interfaces;
 using RendezVousPolyclinique.Infra.Formatters;
-using RendezVousPolyclinique.Infra.Logging;
-using RendezVousPolyclinique.Infra.Logging.Interfaces;
-using RendezVousPolyclinique.Models;
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Net;
-using System.Threading.Tasks;
 
 namespace RendezVousPolyclinique
 {
@@ -40,22 +27,10 @@ namespace RendezVousPolyclinique
         public void ConfigureServices(IServiceCollection services)
         {
             //CORS
-            services.AddCors(
-                options => 
-                {
-                    options.AddPolicy(_policyName, poli =>
-                                       poli.WithOrigins(new string[] { "https://www.isocl.be" })
-                                       .WithMethods("DELETE")
-                                       .AllowAnyHeader()
-                                       );
-                }
-                );
-
-            #region DI
+            services.AddCustomCorsPolicy(_policyName, new List<string>() { "https://www.isocl.be" });
             services.AddScoped<ILoggerManager, LoggerManager>();
-            services.AddScoped<IDBConnect, DBConnect>(m => new DBConnect(Configuration.GetConnectionString("DevPolyDbConnectionString")));
-            services.AddScoped<IRepository<PatientEntity, int>, PatientRepository>();
-
+            services.AddToDI(Configuration);
+            services.AddCustomSwagger("RendezVousPolyclinique", "v1");
 
             services.AddControllers(
                 options =>
@@ -70,20 +45,9 @@ namespace RendezVousPolyclinique
                 }
 
                 );
-            #endregion
-            #region Swagger
-            services.AddSwaggerGen(c =>
-               {
-                   c.SwaggerDoc("v1", new OpenApiInfo { Title = "RendezVousPolyclinique", Version = "v1" });
-               });
-            #endregion
             #region Security
-            services.AddAuthentication("Bearer")
-                       .AddIdentityServerAuthentication("Bearer", options =>
-                       {
-                           options.ApiName = "RendezvousPolyCliniqueApi"; //Nom de l'api configurée dans Identity
-                        options.Authority = "https://localhost:44336"; //Adresse identity server
-                    }); 
+            services.AddIdenityServerSecurityBearer("RendezvousPolyCliniqueApi", "https://localhost:44336");
+            
             #endregion
 
 
@@ -101,30 +65,13 @@ namespace RendezVousPolyclinique
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "RendezVousPolyclinique v1"));
             }
 
-            app.UseExceptionHandler(
-              appError =>
-              {
-                  LoggerManager manager = new LoggerManager();
-                  appError.Run(async context =>
-                  {
-                      context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-                      context.Response.ContentType = "application/json";
-                      var contextFeature = context.Features.Get<IExceptionHandlerFeature>();
-                      if (contextFeature != null)
-                      {
-                          manager.LogError($"Something went wrong: {contextFeature.Error}");
-                          await context.Response.WriteAsync(new ErrorDetails() { StatusCode = context.Response.StatusCode, Message = "Internal Server Error." }.ToString());
-                      }
-                  });
-              });
+            app.AddGlobalErrorHandlerWithLog(new LoggerManager());
 
             app.UseHttpsRedirection();
-
+            app.UseAuthentication();
             app.UseRouting();
-     app.UseCors(_policyName);
-           // app.UseAuthentication();
-
-           // app.UseAuthorization();
+            app.UseCors(_policyName);
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

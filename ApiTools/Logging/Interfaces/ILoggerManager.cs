@@ -1,4 +1,4 @@
-﻿namespace RendezVousPolyclinique.Infra.Logging.Interfaces
+﻿namespace ApiTools.Logging.Interfaces
 {
     public interface ILoggerManager
     {

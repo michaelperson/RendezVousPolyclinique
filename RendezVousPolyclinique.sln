@@ -3,19 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31729.503
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RendezVousPolyclinique", "RendezVousPolyclinique\RendezVousPolyclinique.csproj", "{24619AE8-C54B-43A3-B4B1-0D94380822CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RendezVousPolyclinique", "RendezVousPolyclinique\RendezVousPolyclinique.csproj", "{24619AE8-C54B-43A3-B4B1-0D94380822CC}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "PolyDb", "PolyDb\PolyDb.sqlproj", "{E163398F-CF8C-4598-9DF0-5F5ED509B0F4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PolyDB.DAL", "PolyDB.DAL\PolyDB.DAL.csproj", "{E21EC389-BC29-4E57-A034-FFF8A76ABEE2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PolyDB.DAL", "PolyDB.DAL\PolyDB.DAL.csproj", "{E21EC389-BC29-4E57-A034-FFF8A76ABEE2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MappersTool", "MappersTool\MappersTool.csproj", "{7BE5B62F-4217-4B31-8092-A0F70F845E71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MappersTool", "MappersTool\MappersTool.csproj", "{7BE5B62F-4217-4B31-8092-A0F70F845E71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RendezVousPloyclinique.Models", "RendezVousPloyclinique.Models\RendezVousPloyclinique.Models.csproj", "{585FA9B1-6EFB-4D97-AD80-2D23A4B800E8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RendezVousPloyclinique.Models", "RendezVousPloyclinique.Models\RendezVousPloyclinique.Models.csproj", "{585FA9B1-6EFB-4D97-AD80-2D23A4B800E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiClient", "ApiClient\ApiClient.csproj", "{0844FA92-D3B4-43B3-ADD9-918962C0885B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiClient", "ApiClient\ApiClient.csproj", "{0844FA92-D3B4-43B3-ADD9-918962C0885B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RendezVousPolyclinique.IdentityServer4", "RendezVousPolyclinique.IdentityServer4\RendezVousPolyclinique.IdentityServer4.csproj", "{50CE8D3E-62F4-47D0-AAFA-FB3DFA037BB9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RendezVousPolyclinique.IdentityServer4", "RendezVousPolyclinique.IdentityServer4\RendezVousPolyclinique.IdentityServer4.csproj", "{50CE8D3E-62F4-47D0-AAFA-FB3DFA037BB9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiMiddleware", "ApiMiddleware\ApiMiddleware.csproj", "{5A5CF202-7D72-46B4-BD49-CD13054482C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ApiTools", "ApiTools\ApiTools.csproj", "{77872BA0-BCBE-42DE-84CA-FF0CB5E2F0A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +57,14 @@ Global
 		{50CE8D3E-62F4-47D0-AAFA-FB3DFA037BB9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50CE8D3E-62F4-47D0-AAFA-FB3DFA037BB9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50CE8D3E-62F4-47D0-AAFA-FB3DFA037BB9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5A5CF202-7D72-46B4-BD49-CD13054482C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A5CF202-7D72-46B4-BD49-CD13054482C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A5CF202-7D72-46B4-BD49-CD13054482C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A5CF202-7D72-46B4-BD49-CD13054482C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77872BA0-BCBE-42DE-84CA-FF0CB5E2F0A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77872BA0-BCBE-42DE-84CA-FF0CB5E2F0A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77872BA0-BCBE-42DE-84CA-FF0CB5E2F0A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77872BA0-BCBE-42DE-84CA-FF0CB5E2F0A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

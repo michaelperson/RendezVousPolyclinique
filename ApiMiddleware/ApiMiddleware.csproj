@@ -1,22 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="IdentityServer4" Version="4.1.2" />
     <PackageReference Include="IdentityServer4.AccessTokenValidation" Version="3.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="6.0.0" />
     <PackageReference Include="NLog.Extensions.Logging" Version="1.7.4" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ApiMiddleware\ApiMiddleware.csproj" />
     <ProjectReference Include="..\ApiTools\ApiTools.csproj" />
-    <ProjectReference Include="..\MappersTool\MappersTool.csproj" />
     <ProjectReference Include="..\PolyDB.DAL\PolyDB.DAL.csproj" />
-    <ProjectReference Include="..\RendezVousPloyclinique.Models\RendezVousPloyclinique.Models.csproj" />
   </ItemGroup>
 
 </Project>

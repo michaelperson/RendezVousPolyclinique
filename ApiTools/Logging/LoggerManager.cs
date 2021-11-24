@@ -1,11 +1,7 @@
-﻿using NLog;
-using RendezVousPolyclinique.Infra.Logging.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using ApiTools.Logging.Interfaces;
+using NLog;
 
-namespace RendezVousPolyclinique.Infra.Logging
+namespace ApiTools.Logging
 {
     public class LoggerManager : ILoggerManager
     {
