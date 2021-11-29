@@ -38,10 +38,10 @@ namespace RendezVousPolyclinique.IdentityServer4
             app.UseStaticFiles();
             app.UseRouting();
 
-
+            app.UseIdentityServer();
             app.UseAuthorization();
             app.UseAuthentication();
-            app.UseIdentityServer();
+        
 
             app.UseEndpoints(endpoints => endpoints.MapDefaultControllerRoute());
         }
